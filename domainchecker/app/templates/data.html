@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Data{% endblock title %}
+{% block main-content %}
+<br>
+<div class="container  align-items-center justify-content-center ">
+
+  <table class="table align-middle mb-0 bg-white">
+    {% if isvalid == "valid_data" %}
+    <thead class="bg-light"></thead><tr><th><h1 class="table-title align-items-center justify-content-center">Valid Data Domains({{length}})</h1></th><th><a class="btn btn-link btn-rounded btn-sm fw-bold" href="{% url 'Indata' %}">Invalid data Domains</a></th></tr></thead>
+    <thead class="bg-light">
+        <tr>
+        <th>Valid Domain</th>
+        <th>IP</th>
+      </tr>
+    </thead>
+
+    {% elif isvalid == "Invalid_data" %}
+    <thead class="bg-light"></thead><tr><th><h1 class="table-title align-items-center justify-content-center">Invalid Data Domains ({{length}})</h1></th><th><a class="btn btn-link btn-rounded btn-sm fw-bold" href="{% url 'vdata' %}">valid data Domains</a></th></tr></thead>
+
+    <thead class="bg-light">
+        <tr>
+        <th>InValid Domain</th>
+        <th>IP</th>
+      </tr>
+    </thead>
+
+    {% endif %}
+
+    
+  
+    <tbody>
+      {% for domain, ip in data1 %}
+      <tr>
+        <td>
+          <div class="d-flex align-items-center">
+            <div class="ms-3">
+              <p class="fw-bold mb-1">{{domain}}</p>
+            </div>
+          </div>
+        </td>
+        
+        <td>{{ip}}</td>
+      {% endfor %}
+      
+    </tbody>
+  </table>
+  </div>
+  <br>
+  {% endblock main-content %}
